@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Camera } from "expo-camera";
 import { ResultScreen } from "../ResultScreen";
+import * as MediaLibrary from "expo-media-library";
 
 export function CameraScreen() {
   let camera: Camera | null;
   const [showResult, setResultVisible] = useState(false);
   const [resultImage, setResultImage] = useState<any>(null);
+  const [permissionResponse, requestPermission] = useState(false);
 
   const capturePicture = async () => {
     if (!camera) return;
@@ -20,10 +22,21 @@ export function CameraScreen() {
     setResultVisible(false);
     capturePicture();
   };
+
+  const usePhoto = async () => {
+    const mediaLibraryPermission = await MediaLibrary.requestPermissionsAsync();
+    requestPermission(mediaLibraryPermission.status === "granted");
+    await MediaLibrary.saveToLibraryAsync(resultImage.uri);
+  };
+
   return (
     <>
       {showResult && resultImage ? (
-        <ResultScreen photo={resultImage} retakePhoto={retakePhoto} />
+        <ResultScreen
+          photo={resultImage}
+          retakePhoto={retakePhoto}
+          usePhoto={usePhoto}
+        />
       ) : (
         <>
           <Camera

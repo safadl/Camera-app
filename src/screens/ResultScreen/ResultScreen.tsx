@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 
-export const ResultScreen = ({ photo, retakePhoto }: any) => {
+export const ResultScreen = ({ photo, retakePhoto, usePhoto }: any) => {
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.photoContainer}>
@@ -22,6 +22,11 @@ export const ResultScreen = ({ photo, retakePhoto }: any) => {
         <TouchableOpacity onPress={retakePhoto} style={styles.button}>
           <Feather name="arrow-left" size={20} color="#dc6464" />
           <Text style={styles.text}>Retake</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={usePhoto} style={styles.button}>
+          <Feather name="check" size={20} color="#41cc78" />
+          <Text style={styles.text}>Use photo</Text>
         </TouchableOpacity>
       </View>
     </View>

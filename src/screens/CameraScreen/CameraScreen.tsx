@@ -15,10 +15,15 @@ export function CameraScreen() {
     setResultImage(photoTaken);
   };
 
+  const retakePhoto = () => {
+    setResultImage(null);
+    setResultVisible(false);
+    capturePicture();
+  };
   return (
     <>
       {showResult && resultImage ? (
-        <ResultScreen photo={resultImage} />
+        <ResultScreen photo={resultImage} retakePhoto={retakePhoto} />
       ) : (
         <>
           <Camera
@@ -39,7 +44,7 @@ export function CameraScreen() {
                     borderRadius: 50,
                     backgroundColor: "#fff",
                   }}
-                ></TouchableOpacity>
+                />
               </View>
             </View>
           </View>

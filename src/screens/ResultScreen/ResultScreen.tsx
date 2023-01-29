@@ -14,10 +14,10 @@ export const ResultScreen = ({ photo }: any) => {
 
 const styles = StyleSheet.create({
   photoContainer: {
-    backgroundColor: "blue",
-    flex: 1,
+    backgroundColor: "red",
     width: "100%",
-    height: "100%",
+    height: "65%",
+    marginTop: "25%",
   },
   photo: {
     flex: 1,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ImageBackground,
   StyleSheet,
@@ -7,8 +7,19 @@ import {
   Text,
 } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
+import * as MediaLibrary from "expo-media-library";
 
-export const ResultScreen = ({ photo, retakePhoto, usePhoto }: any) => {
+export const ResultScreen = ({ photo, retakePhoto }: any) => {
+
+  const [permissionResponse, requestPermission] = useState(false);
+
+  const usePhoto = async () => {
+    const mediaLibraryPermission = await MediaLibrary.requestPermissionsAsync();
+    requestPermission(mediaLibraryPermission.status === "granted");
+    await MediaLibrary.saveToLibraryAsync(photo.uri);
+  };
+
+  
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.photoContainer}>

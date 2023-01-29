@@ -20,20 +20,21 @@ export function CameraScreen() {
       {showResult && resultImage ? (
         <ResultScreen photo={resultImage} />
       ) : (
-        <Camera
-          style={{ flex: 1 }}
-          ref={(r) => {
-            camera = r;
-          }}
-        >
+        <>
+          <Camera
+            style={styles.cameraStyle}
+            ref={(r) => {
+              camera = r;
+            }}
+          />
           <View style={styles.buttonContainer}>
             <View style={styles.button}>
               <View style={styles.border}>
                 <TouchableOpacity
                   onPress={capturePicture}
                   style={{
-                    width: 70,
-                    height: 70,
+                    width: 60,
+                    height: 60,
                     bottom: 0,
                     borderRadius: 50,
                     backgroundColor: "#fff",
@@ -42,7 +43,7 @@ export function CameraScreen() {
               </View>
             </View>
           </View>
-        </Camera>
+        </>
       )}
     </>
   );
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     flexDirection: "row",
     position: "absolute",
-    bottom: 60,
+    bottom: 50,
     padding: 20,
     justifyContent: "space-between",
     alignSelf: "center",
@@ -76,5 +77,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 50,
     padding: 4,
+  },
+  cameraStyle: {
+    height: "65%",
+    marginTop: "25%",
   },
 });

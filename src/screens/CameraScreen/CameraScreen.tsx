@@ -28,16 +28,18 @@ export function CameraScreen() {
         >
           <View style={styles.buttonContainer}>
             <View style={styles.button}>
-              <TouchableOpacity
-                onPress={capturePicture}
-                style={{
-                  width: 70,
-                  height: 70,
-                  bottom: 0,
-                  borderRadius: 50,
-                  backgroundColor: "#fff",
-                }}
-              />
+              <View style={styles.border}>
+                <TouchableOpacity
+                  onPress={capturePicture}
+                  style={{
+                    width: 70,
+                    height: 70,
+                    bottom: 0,
+                    borderRadius: 50,
+                    backgroundColor: "#fff",
+                  }}
+                ></TouchableOpacity>
+              </View>
             </View>
           </View>
         </Camera>
@@ -63,10 +65,16 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     flexDirection: "row",
     position: "absolute",
-    bottom: 0,
+    bottom: 60,
     padding: 20,
     justifyContent: "space-between",
     alignSelf: "center",
     alignItems: "center",
+  },
+  border: {
+    borderColor: "white",
+    borderWidth: 2,
+    borderRadius: 50,
+    padding: 4,
   },
 });
